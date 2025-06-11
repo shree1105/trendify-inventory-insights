@@ -7,7 +7,7 @@ import { AlertTriangle, Package, TrendingUp, Clock } from "lucide-react";
 const InventoryInsights = () => {
   const inventoryData = [
     {
-      product: "Wireless Headphones",
+      product: "Women's Denim Jeans",
       currentStock: 45,
       maxStock: 100,
       status: "healthy",
@@ -15,7 +15,7 @@ const InventoryInsights = () => {
       reorderPoint: 20
     },
     {
-      product: "Smart Watch",
+      product: "Leather Jacket",
       currentStock: 15,
       maxStock: 80,
       status: "low",
@@ -23,7 +23,7 @@ const InventoryInsights = () => {
       reorderPoint: 25
     },
     {
-      product: "Bluetooth Speaker",
+      product: "Summer Dress",
       currentStock: 8,
       maxStock: 60,
       status: "critical",
@@ -31,7 +31,7 @@ const InventoryInsights = () => {
       reorderPoint: 15
     },
     {
-      product: "Phone Case",
+      product: "Cotton T-Shirt",
       currentStock: 78,
       maxStock: 120,
       status: "healthy",
@@ -39,7 +39,7 @@ const InventoryInsights = () => {
       reorderPoint: 30
     },
     {
-      product: "Charging Cable",
+      product: "Running Shoes",
       currentStock: 23,
       maxStock: 100,
       status: "low",

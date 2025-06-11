@@ -16,7 +16,7 @@ const Index = () => {
   const kpis = [
     {
       title: "Total Revenue",
-      value: "$24,567",
+      value: "$64,890",
       change: "+12.5%",
       trend: "up",
       icon: TrendingUp,
@@ -40,7 +40,7 @@ const Index = () => {
     },
     {
       title: "Product Categories",
-      value: "12",
+      value: "8",
       change: "0%",
       trend: "neutral",
       icon: BarChart3,
@@ -55,10 +55,10 @@ const Index = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Inventory Analytics
+              Clothing Store Analytics
             </h1>
             <p className="text-muted-foreground mt-2">
-              Comprehensive insights to optimize your inventory management
+              Comprehensive insights to optimize your clothing inventory management
             </p>
           </div>
           <div className="flex gap-2">
@@ -134,26 +134,26 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-xl font-semibold">AI-Powered Recommendations</CardTitle>
                 <CardDescription>
-                  Intelligent insights to optimize your inventory strategy
+                  Intelligent insights to optimize your clothing inventory strategy
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                   <h4 className="font-semibold text-blue-900">Restock Alert</h4>
                   <p className="text-blue-700 text-sm mt-1">
-                    Consider restocking "Wireless Headphones" - trending 45% above average sales
+                    Consider restocking "Women's Denim Jeans" - trending 45% above average sales
                   </p>
                 </div>
                 <div className="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
                   <h4 className="font-semibold text-amber-900">Slow Mover</h4>
                   <p className="text-amber-700 text-sm mt-1">
-                    "Classic Watches" sales down 30% - consider promotional pricing
+                    "Winter Coats" sales down 30% - consider seasonal promotional pricing
                   </p>
                 </div>
                 <div className="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
                   <h4 className="font-semibold text-green-900">Trending Category</h4>
                   <p className="text-green-700 text-sm mt-1">
-                    "Smart Home" category showing 65% growth - expand product line
+                    "Summer Collection" category showing 65% growth - expand product line
                   </p>
                 </div>
               </CardContent>

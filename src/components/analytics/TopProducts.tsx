@@ -4,14 +4,14 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 const TopProducts = () => {
   const productData = [
-    { name: "Wireless Headphones", sales: 234, revenue: 4680 },
-    { name: "Smart Watch", sales: 189, revenue: 3780 },
-    { name: "Bluetooth Speaker", sales: 156, revenue: 2340 },
-    { name: "Phone Case", sales: 143, revenue: 1430 },
-    { name: "Charging Cable", sales: 128, revenue: 640 },
-    { name: "Tablet Stand", sales: 98, revenue: 980 },
-    { name: "Screen Protector", sales: 87, revenue: 435 },
-    { name: "Car Charger", sales: 76, revenue: 760 }
+    { name: "Women's Denim Jeans", sales: 234, revenue: 14040 },
+    { name: "Cotton T-Shirt", sales: 189, revenue: 3780 },
+    { name: "Leather Jacket", sales: 156, revenue: 23400 },
+    { name: "Summer Dress", sales: 143, revenue: 8580 },
+    { name: "Running Shoes", sales: 128, revenue: 9600 },
+    { name: "Casual Sneakers", sales: 98, revenue: 7840 },
+    { name: "Polo Shirt", sales: 87, revenue: 2175 },
+    { name: "Denim Jacket", sales: 76, revenue: 6080 }
   ];
 
   return (

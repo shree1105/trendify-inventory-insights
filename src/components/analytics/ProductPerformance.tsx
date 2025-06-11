@@ -9,19 +9,19 @@ interface ProductPerformanceProps {
 
 const ProductPerformance = ({ type }: ProductPerformanceProps) => {
   const topProducts = [
-    { name: "Wireless Headphones", sales: 234, revenue: "$4,680", change: "+15%" },
-    { name: "Smart Watch", sales: 189, revenue: "$3,780", change: "+8%" },
-    { name: "Bluetooth Speaker", sales: 156, revenue: "$2,340", change: "+12%" },
-    { name: "Phone Case", sales: 143, revenue: "$1,430", change: "+5%" },
-    { name: "Charging Cable", sales: 128, revenue: "$640", change: "+3%" }
+    { name: "Women's Denim Jeans", sales: 234, revenue: "$14,040", change: "+15%" },
+    { name: "Cotton T-Shirt", sales: 189, revenue: "$3,780", change: "+8%" },
+    { name: "Leather Jacket", sales: 156, revenue: "$23,400", change: "+12%" },
+    { name: "Summer Dress", sales: 143, revenue: "$8,580", change: "+5%" },
+    { name: "Running Shoes", sales: 128, revenue: "$9,600", change: "+3%" }
   ];
 
   const bottomProducts = [
-    { name: "Classic Watch", sales: 12, revenue: "$240", change: "-30%" },
-    { name: "Vintage Camera", sales: 8, revenue: "$160", change: "-45%" },
-    { name: "CD Player", sales: 5, revenue: "$100", change: "-60%" },
-    { name: "Wired Headphones", sales: 4, revenue: "$80", change: "-25%" },
-    { name: "Film Camera", sales: 2, revenue: "$40", change: "-80%" }
+    { name: "Winter Coat", sales: 12, revenue: "$1,800", change: "-30%" },
+    { name: "Formal Suit", sales: 8, revenue: "$2,400", change: "-45%" },
+    { name: "Vintage Sweater", sales: 5, revenue: "$250", change: "-60%" },
+    { name: "Wool Scarf", sales: 4, revenue: "$120", change: "-25%" },
+    { name: "Evening Gown", sales: 2, revenue: "$600", change: "-80%" }
   ];
 
   const products = type === "top" ? topProducts : bottomProducts;
