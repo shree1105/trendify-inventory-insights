@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown } from "lucide-react";
@@ -9,19 +8,19 @@ interface ProductPerformanceProps {
 
 const ProductPerformance = ({ type }: ProductPerformanceProps) => {
   const topProducts = [
-    { name: "Women's Denim Jeans", sales: 234, revenue: "$14,040", change: "+15%" },
-    { name: "Cotton T-Shirt", sales: 189, revenue: "$3,780", change: "+8%" },
-    { name: "Leather Jacket", sales: 156, revenue: "$23,400", change: "+12%" },
-    { name: "Summer Dress", sales: 143, revenue: "$8,580", change: "+5%" },
-    { name: "Running Shoes", sales: 128, revenue: "$9,600", change: "+3%" }
+    { name: "Women's Denim Jeans", sales: 234, revenue: "₹1,12,320", change: "+15%" },
+    { name: "Cotton T-Shirt", sales: 189, revenue: "₹30,240", change: "+8%" },
+    { name: "Leather Jacket", sales: 156, revenue: "₹1,87,200", change: "+12%" },
+    { name: "Summer Dress", sales: 143, revenue: "₹68,640", change: "+5%" },
+    { name: "Running Shoes", sales: 128, revenue: "₹76,800", change: "+3%" }
   ];
 
   const bottomProducts = [
-    { name: "Winter Coat", sales: 12, revenue: "$1,800", change: "-30%" },
-    { name: "Formal Suit", sales: 8, revenue: "$2,400", change: "-45%" },
-    { name: "Vintage Sweater", sales: 5, revenue: "$250", change: "-60%" },
-    { name: "Wool Scarf", sales: 4, revenue: "$120", change: "-25%" },
-    { name: "Evening Gown", sales: 2, revenue: "$600", change: "-80%" }
+    { name: "Winter Coat", sales: 12, revenue: "₹14,400", change: "-30%" },
+    { name: "Formal Suit", sales: 8, revenue: "₹19,200", change: "-45%" },
+    { name: "Vintage Sweater", sales: 5, revenue: "₹2,000", change: "-60%" },
+    { name: "Wool Scarf", sales: 4, revenue: "₹960", change: "-25%" },
+    { name: "Evening Gown", sales: 2, revenue: "₹4,800", change: "-80%" }
   ];
 
   const products = type === "top" ? topProducts : bottomProducts;

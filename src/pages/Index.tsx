@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -16,7 +15,7 @@ const Index = () => {
   const kpis = [
     {
       title: "Total Revenue",
-      value: "$64,890",
+      value: "₹5,19,120",
       change: "+12.5%",
       trend: "up",
       icon: TrendingUp,

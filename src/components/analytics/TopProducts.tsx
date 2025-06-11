@@ -4,15 +4,19 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 const TopProducts = () => {
   const productData = [
-    { name: "Women's Denim Jeans", sales: 234, revenue: 14040 },
-    { name: "Cotton T-Shirt", sales: 189, revenue: 3780 },
-    { name: "Leather Jacket", sales: 156, revenue: 23400 },
-    { name: "Summer Dress", sales: 143, revenue: 8580 },
-    { name: "Running Shoes", sales: 128, revenue: 9600 },
-    { name: "Casual Sneakers", sales: 98, revenue: 7840 },
-    { name: "Polo Shirt", sales: 87, revenue: 2175 },
-    { name: "Denim Jacket", sales: 76, revenue: 6080 }
+    { name: "Women's Denim Jeans", sales: 234, revenue: 112320 },
+    { name: "Cotton T-Shirt", sales: 189, revenue: 30240 },
+    { name: "Leather Jacket", sales: 156, revenue: 187200 },
+    { name: "Summer Dress", sales: 143, revenue: 68640 },
+    { name: "Running Shoes", sales: 128, revenue: 76800 },
+    { name: "Casual Sneakers", sales: 98, revenue: 62720 },
+    { name: "Polo Shirt", sales: 87, revenue: 17400 },
+    { name: "Denim Jacket", sales: 76, revenue: 48640 }
   ];
+
+  const formatCurrency = (value: number) => {
+    return `₹${value.toLocaleString('en-IN')}`;
+  };
 
   return (
     <Card className="border-0 shadow-lg">
@@ -39,6 +43,12 @@ const TopProducts = () => {
                 border: '1px solid #e5e7eb',
                 borderRadius: '8px',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}
+              formatter={(value, name) => {
+                if (name === 'revenue') {
+                  return [formatCurrency(value as number), 'Revenue'];
+                }
+                return [value, 'Sales'];
               }}
             />
             <Bar dataKey="sales" fill="#3b82f6" radius={[4, 4, 0, 0]} />
