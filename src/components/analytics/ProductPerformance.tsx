@@ -27,14 +27,14 @@ const ProductPerformance = ({ type }: ProductPerformanceProps) => {
   const products = type === "top" ? topProducts : bottomProducts;
   const title = type === "top" ? "Top Performing Products" : "Underperforming Products";
   const description = type === "top" ? "Best sellers this period" : "Products needing attention";
-  const icon = type === "top" ? TrendingUp : TrendingDown;
+  const IconComponent = type === "top" ? TrendingUp : TrendingDown;
   const iconColor = type === "top" ? "text-green-500" : "text-red-500";
 
   return (
     <Card className="border-0 shadow-lg">
       <CardHeader>
         <div className="flex items-center gap-2">
-          {icon({ className: `h-5 w-5 ${iconColor}` })}
+          <IconComponent className={`h-5 w-5 ${iconColor}`} />
           <CardTitle className="text-lg font-semibold">{title}</CardTitle>
         </div>
         <CardDescription>{description}</CardDescription>
