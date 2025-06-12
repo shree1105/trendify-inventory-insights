@@ -73,8 +73,8 @@ const Index = () => {
 
         {/* Charts and Analytics */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <SalesOverview />
-          <ProductPerformance />
+          <SalesOverview timeRange="7d" />
+          <ProductPerformance type="top" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
