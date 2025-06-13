@@ -1,31 +1,14 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from "recharts";
+import { useSalesOverview } from "@/hooks/useSales";
 
 interface SalesOverviewProps {
   timeRange: string;
 }
 
 const SalesOverview = ({ timeRange }: SalesOverviewProps) => {
-  // Mock data based on time range with rupees
-  const salesData = timeRange === "7d" ? [
-    { date: "Mon", revenue: 192000, units: 45 },
-    { date: "Tue", revenue: 111840, units: 32 },
-    { date: "Wed", revenue: 784000, units: 120 },
-    { date: "Thu", revenue: 312640, units: 75 },
-    { date: "Fri", revenue: 384000, units: 95 },
-    { date: "Sat", revenue: 304000, units: 68 },
-    { date: "Sun", revenue: 344000, units: 82 }
-  ] : timeRange === "30d" ? [
-    { date: "Week 1", revenue: 1920000, units: 450 },
-    { date: "Week 2", revenue: 1440000, units: 320 },
-    { date: "Week 3", revenue: 2560000, units: 580 },
-    { date: "Week 4", revenue: 2240000, units: 495 }
-  ] : [
-    { date: "Month 1", revenue: 6800000, units: 1500 },
-    { date: "Month 2", revenue: 7360000, units: 1680 },
-    { date: "Month 3", revenue: 8640000, units: 1950 }
-  ];
+  const { data: salesData = [], isLoading } = useSalesOverview(timeRange);
 
   const formatCurrency = (value: number) => {
     return `₹${(value / 1000).toFixed(0)}k`;
@@ -34,6 +17,23 @@ const SalesOverview = ({ timeRange }: SalesOverviewProps) => {
   const formatTooltipCurrency = (value: number) => {
     return `₹${value.toLocaleString('en-IN')}`;
   };
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="border-0 shadow-lg">
+          <CardContent className="h-[300px] flex items-center justify-center">
+            <div className="animate-pulse text-gray-500">Loading revenue data...</div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-lg">
+          <CardContent className="h-[300px] flex items-center justify-center">
+            <div className="animate-pulse text-gray-500">Loading units data...</div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

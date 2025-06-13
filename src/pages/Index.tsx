@@ -5,8 +5,11 @@ import ProductPerformance from "@/components/analytics/ProductPerformance";
 import InventoryInsights from "@/components/analytics/InventoryInsights";
 import TopProducts from "@/components/analytics/TopProducts";
 import Header from "@/components/Header";
+import { useDashboardMetrics } from "@/hooks/useDashboardMetrics";
 
 const Index = () => {
+  const { data: metrics, isLoading } = useDashboardMetrics();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -27,9 +30,15 @@ const Index = () => {
               <CardTitle className="text-sm font-medium">Total Products</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">2,847</div>
+              <div className="text-2xl font-bold">
+                {isLoading ? (
+                  <div className="animate-pulse bg-gray-200 h-8 w-16 rounded"></div>
+                ) : (
+                  metrics?.total_products || 0
+                )}
+              </div>
               <p className="text-xs text-muted-foreground">
-                +12% from last month
+                Products in catalog
               </p>
             </CardContent>
           </Card>
@@ -39,7 +48,13 @@ const Index = () => {
               <CardTitle className="text-sm font-medium">Low Stock Items</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-orange-600">23</div>
+              <div className="text-2xl font-bold text-orange-600">
+                {isLoading ? (
+                  <div className="animate-pulse bg-gray-200 h-8 w-16 rounded"></div>
+                ) : (
+                  metrics?.low_stock_items || 0
+                )}
+              </div>
               <p className="text-xs text-muted-foreground">
                 Requires attention
               </p>
@@ -51,9 +66,15 @@ const Index = () => {
               <CardTitle className="text-sm font-medium">Total Value</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">₹45,23,180</div>
+              <div className="text-2xl font-bold">
+                {isLoading ? (
+                  <div className="animate-pulse bg-gray-200 h-8 w-24 rounded"></div>
+                ) : (
+                  `₹${(metrics?.total_value || 0).toLocaleString('en-IN')}`
+                )}
+              </div>
               <p className="text-xs text-muted-foreground">
-                +8% from last month
+                Inventory value
               </p>
             </CardContent>
           </Card>
@@ -63,9 +84,15 @@ const Index = () => {
               <CardTitle className="text-sm font-medium">Today's Sales</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">₹1,24,560</div>
+              <div className="text-2xl font-bold text-green-600">
+                {isLoading ? (
+                  <div className="animate-pulse bg-gray-200 h-8 w-24 rounded"></div>
+                ) : (
+                  `₹${(metrics?.today_sales || 0).toLocaleString('en-IN')}`
+                )}
+              </div>
               <p className="text-xs text-muted-foreground">
-                +5% from yesterday
+                Revenue today
               </p>
             </CardContent>
           </Card>

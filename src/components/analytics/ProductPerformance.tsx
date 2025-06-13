@@ -1,33 +1,55 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown } from "lucide-react";
+import { useProductPerformance } from "@/hooks/useProducts";
 
 interface ProductPerformanceProps {
   type: "top" | "bottom";
 }
 
 const ProductPerformance = ({ type }: ProductPerformanceProps) => {
-  const topProducts = [
-    { name: "Women's Denim Jeans", sales: 234, revenue: "₹1,12,320", change: "+15%" },
-    { name: "Cotton T-Shirt", sales: 189, revenue: "₹30,240", change: "+8%" },
-    { name: "Leather Jacket", sales: 156, revenue: "₹1,87,200", change: "+12%" },
-    { name: "Summer Dress", sales: 143, revenue: "₹68,640", change: "+5%" },
-    { name: "Running Shoes", sales: 128, revenue: "₹76,800", change: "+3%" }
-  ];
+  const { data: products = [], isLoading } = useProductPerformance(type);
 
-  const bottomProducts = [
-    { name: "Winter Coat", sales: 12, revenue: "₹14,400", change: "-30%" },
-    { name: "Formal Suit", sales: 8, revenue: "₹19,200", change: "-45%" },
-    { name: "Vintage Sweater", sales: 5, revenue: "₹2,000", change: "-60%" },
-    { name: "Wool Scarf", sales: 4, revenue: "₹960", change: "-25%" },
-    { name: "Evening Gown", sales: 2, revenue: "₹4,800", change: "-80%" }
-  ];
-
-  const products = type === "top" ? topProducts : bottomProducts;
   const title = type === "top" ? "Top Performing Products" : "Underperforming Products";
   const description = type === "top" ? "Best sellers this period" : "Products needing attention";
   const IconComponent = type === "top" ? TrendingUp : TrendingDown;
   const iconColor = type === "top" ? "text-green-500" : "text-red-500";
+
+  if (isLoading) {
+    return (
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <IconComponent className={`h-5 w-5 ${iconColor}`} />
+            <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+          </div>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {[1, 2, 3, 4, 5].map((index) => (
+              <div key={index} className="animate-pulse">
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                    <div>
+                      <div className="h-4 bg-gray-200 rounded w-32 mb-1"></div>
+                      <div className="h-3 bg-gray-200 rounded w-20"></div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="h-4 bg-gray-200 rounded w-20 mb-1"></div>
+                    <div className="h-4 bg-gray-200 rounded w-12"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card className="border-0 shadow-lg">
@@ -40,7 +62,7 @@ const ProductPerformance = ({ type }: ProductPerformanceProps) => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {products.map((product, index) => (
+          {products.map((product: any, index: number) => (
             <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
               <div className="flex items-center gap-3">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${

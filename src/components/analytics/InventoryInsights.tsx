@@ -3,50 +3,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { AlertTriangle, Package, TrendingUp, Clock } from "lucide-react";
+import { useInventoryInsights } from "@/hooks/useInventory";
 
 const InventoryInsights = () => {
-  const inventoryData = [
-    {
-      product: "Women's Denim Jeans",
-      currentStock: 45,
-      maxStock: 100,
-      status: "healthy",
-      daysLeft: 12,
-      reorderPoint: 20
-    },
-    {
-      product: "Leather Jacket",
-      currentStock: 15,
-      maxStock: 80,
-      status: "low",
-      daysLeft: 5,
-      reorderPoint: 25
-    },
-    {
-      product: "Summer Dress",
-      currentStock: 8,
-      maxStock: 60,
-      status: "critical",
-      daysLeft: 2,
-      reorderPoint: 15
-    },
-    {
-      product: "Cotton T-Shirt",
-      currentStock: 78,
-      maxStock: 120,
-      status: "healthy",
-      daysLeft: 25,
-      reorderPoint: 30
-    },
-    {
-      product: "Running Shoes",
-      currentStock: 23,
-      maxStock: 100,
-      status: "low",
-      daysLeft: 8,
-      reorderPoint: 25
-    }
-  ];
+  const { data: inventoryData = [], isLoading } = useInventoryInsights();
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -74,6 +34,49 @@ const InventoryInsights = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="border-0 shadow-lg lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold flex items-center gap-2">
+              <Package className="h-5 w-5 text-blue-600" />
+              Current Inventory Status
+            </CardTitle>
+            <CardDescription>Stock levels and reorder recommendations</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {[1, 2, 3, 4, 5].map((index) => (
+                <div key={index} className="animate-pulse space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="h-4 w-4 bg-gray-200 rounded"></div>
+                      <div className="h-4 bg-gray-200 rounded w-32"></div>
+                    </div>
+                    <div className="h-6 bg-gray-200 rounded w-16"></div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <div className="h-3 bg-gray-200 rounded w-20"></div>
+                      <div className="h-3 bg-gray-200 rounded w-8"></div>
+                    </div>
+                    <div className="h-2 bg-gray-200 rounded"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-lg">
+          <CardContent className="h-full flex items-center justify-center">
+            <div className="animate-pulse text-gray-500">Loading actions...</div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Inventory Status Overview */}
@@ -87,7 +90,7 @@ const InventoryInsights = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
-            {inventoryData.map((item, index) => (
+            {inventoryData.slice(0, 5).map((item: any, index: number) => (
               <div key={index} className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -128,7 +131,9 @@ const InventoryInsights = () => {
         <CardContent className="space-y-4">
           <div className="p-4 bg-red-50 rounded-lg border border-red-200">
             <h4 className="font-semibold text-red-900 text-sm">Urgent Reorders</h4>
-            <p className="text-red-700 text-xs mt-1">2 products need immediate restocking</p>
+            <p className="text-red-700 text-xs mt-1">
+              {inventoryData.filter((item: any) => item.status === 'critical').length} products need immediate restocking
+            </p>
             <button className="mt-2 px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-colors">
               Create Purchase Orders
             </button>
@@ -136,7 +141,9 @@ const InventoryInsights = () => {
           
           <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
             <h4 className="font-semibold text-amber-900 text-sm">Low Stock Alerts</h4>
-            <p className="text-amber-700 text-xs mt-1">3 products approaching reorder point</p>
+            <p className="text-amber-700 text-xs mt-1">
+              {inventoryData.filter((item: any) => item.status === 'low').length} products approaching reorder point
+            </p>
             <button className="mt-2 px-3 py-1 bg-amber-600 text-white text-xs rounded hover:bg-amber-700 transition-colors">
               Review & Plan
             </button>
